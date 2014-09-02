@@ -29,7 +29,7 @@ module Phase2
     def render_content(content, type)
       raise if already_built_response?
       @already_built_response = true
-      res.content_type = ("text/html")
+      res.content_type = type
       res.body = content
     end
   end
