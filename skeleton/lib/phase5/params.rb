@@ -22,7 +22,8 @@ module Phase5
         key, value = pair
         @params[key] = value      
       end
-
+      
+      # return value unused for now
       @params
     end
 
