@@ -26,12 +26,7 @@ module Phase5
     end
 
     def [](key)
-      puts "dbg []"
-      p key
-      key = key.to_sym
-      puts "sym"
-      p key
-      p @params
+      key = key.to_s
       @params[key]
     end
 
@@ -85,10 +80,7 @@ module Phase5
         \[|   # between top key and the next
         \]    # after bottom key
       /x
-      um = key.split(split_pat).map{|x| x.to_sym}
-      puts "dbg PK"
-      p um
-      um
+      key.split(split_pat) 
     end
   end
 end
