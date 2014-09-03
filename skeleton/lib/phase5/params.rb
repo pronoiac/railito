@@ -9,6 +9,7 @@ module Phase5
     def initialize(req, route_params = {})
       @params ||= {}
       parse_query_string(req)
+      parse_post_query(req)
       
     end
     
@@ -16,10 +17,12 @@ module Phase5
       query_string = req.query_string
       return nil if query_string.nil?
 
-      paired_key_values = parse_www_encoded_form(query_string)
-
-      # return value unused for now
-      @params
+      parse_www_encoded_form(query_string)
+    end
+    
+    def parse_post_query(req)
+      return nil if req.body.nil? 
+      parse_www_encoded_form(req.body)
     end
 
     def [](key)
