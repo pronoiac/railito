@@ -9,37 +9,25 @@ module Phase5
     def initialize(req, route_params = {})
       @params ||= {}
       parse_query_string(req)
-      @params
     end
     
     def parse_query_string(req)
-      puts "debug:"
-      # p req
       query_string = req.query_string
       return nil if query_string.nil?
-      puts "QS"
-      p query_string
-      puts "/QS"
-      paired_key_values = URI.decode_www_form(query_string)
-      #  parse_www_encoded_form(query_string)
+
+      paired_key_values = parse_www_encoded_form(query_string)
+
       until paired_key_values.empty?
-        puts "PKV"
-        p paired_key_values
-        puts "pair"
         pair = paired_key_values.shift
-        p pair
         key, value = pair
-        puts "KV"
-        p key
-        p value
         @params[key] = value      
       end
-      puts "params"
-      p @params
+
       @params
     end
 
     def [](key)
+      @params[key]
     end
 
     def to_s
@@ -55,11 +43,7 @@ module Phase5
     # should return
     # { "user" => { "address" => { "street" => "main", "zip" => "89436" } } }
     def parse_www_encoded_form(www_encoded_form)
-      puts "PWEF"
-      hmm = URI.decode_www_form(www_encoded_form)
-      # hmm = www_encoded_form.decode_www_form
-      p hmm
-      hmm
+      URI.decode_www_form(www_encoded_form)
     end
 
     # this should return an array
