@@ -20,9 +20,7 @@ def parse_www_encoded_form(www_encoded_form)
     hash_path = parse_key(key)
     p hash_path
     
-    top = hash_path.shift
-    @params[top] = {} unless @params.key?(top)
-    descend = @params[top]
+    descend = @params
 
     while hash_path.count > 1
       top = hash_path.shift
@@ -55,7 +53,6 @@ def testing
   puts "=== parse key: testing #{text}:"
   p parse_key(text)
   puts "ideal: ['user', 'address', 'street']"
-  puts "actual: { 'user' => { 'address' => 'street' }"
 
   puts
   text = "user[address][street]=main&user[address][zip]=89436"
