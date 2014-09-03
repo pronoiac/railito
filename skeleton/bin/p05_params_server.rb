@@ -54,8 +54,6 @@ end
 
 server = WEBrick::HTTPServer.new(Port: 3000)
 server.mount_proc('/') do |req, res|
-  res.content_type=("text/text")
-  
   case [req.request_method, req.path]
   when ['GET', '/cats']
     CatsController.new(req, res, {}).index
