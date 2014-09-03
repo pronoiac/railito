@@ -23,12 +23,13 @@ def parse_www_encoded_form(www_encoded_form)
     descend = @params
 
     while hash_path.count > 1
-      top = hash_path.shift
+      top = hash_path.shift.to_sym
+      debugger
       descend[top] = {} unless descend.key?(top)
       descend = descend[top]
     end
     
-    descend[hash_path.shift] = value
+    descend[hash_path.shift.to_sym] = value
       
   end # /paired_key_values
   

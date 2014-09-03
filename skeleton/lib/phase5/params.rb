@@ -26,6 +26,12 @@ module Phase5
     end
 
     def [](key)
+      puts "dbg []"
+      p key
+      key = key.to_sym
+      puts "sym"
+      p key
+      p @params
       @params[key]
     end
 
@@ -54,14 +60,17 @@ module Phase5
     
         descend = @params
         
+        puts "dbg PWEF"
+        p hash_path
+        
         # go down the list
         while hash_path.count > 1
-          top = hash_path.shift
+          top = hash_path.shift #.to_sym
+          p top
           descend[top] = {} unless descend.key?(top)
           descend = descend[top]
         end
-        
-        # down to one entry - key label
+    
         descend[hash_path.shift] = value
       
       end # /paired_key_values
@@ -76,7 +85,10 @@ module Phase5
         \[|   # between top key and the next
         \]    # after bottom key
       /x
-      key.split(split_pat)
+      um = key.split(split_pat).map{|x| x.to_sym}
+      puts "dbg PK"
+      p um
+      um
     end
   end
 end

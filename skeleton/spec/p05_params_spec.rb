@@ -66,6 +66,8 @@ describe Phase5::Params do
     it "handles route params" do
       params = Phase5::Params.new(req, {"id" => 5, "user_id" => 22})
       params["id"].should == 5
+      params[:id].should == 5
+      
       params["user_id"].should == 22
     end
   end
