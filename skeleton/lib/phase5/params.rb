@@ -17,12 +17,6 @@ module Phase5
 
       paired_key_values = parse_www_encoded_form(query_string)
 
-      until paired_key_values.empty?
-        pair = paired_key_values.shift
-        key, value = pair
-        @params[key] = value      
-      end
-      
       # return value unused for now
       @params
     end
@@ -44,7 +38,13 @@ module Phase5
     # should return
     # { "user" => { "address" => { "street" => "main", "zip" => "89436" } } }
     def parse_www_encoded_form(www_encoded_form)
-      URI.decode_www_form(www_encoded_form)
+      paired_key_values = URI.decode_www_form(www_encoded_form)
+      
+      until paired_key_values.empty?
+        pair = paired_key_values.shift
+        key, value = pair
+        @params[key] = value
+      end
     end
 
     # this should return an array
