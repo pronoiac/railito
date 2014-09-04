@@ -22,6 +22,10 @@ module Phase6
     # use pattern to pull out route params (save for later?)
     # instantiate controller and call controller action
     def run(req, res)
+      # calc route params. route_params = {}
+      
+      controller = @controller_class.new(req, res, {})
+      controller.invoke_action(self.action_name)
     end
   end
 
@@ -60,6 +64,14 @@ module Phase6
 
     # either throw 404 or call run on a matched route
     def run(req, res)
+      route = match(req)
+
+      if route.nil?
+        res.status = 404
+        return nil
+      end
+      
+      route.run(req, res)
     end
   end
 end
