@@ -1,16 +1,7 @@
-# Using The Specs
+# What.
 
-Some specs have been written to guide you towards the lite. There are
-rspec specs in the `spec` directory and demo servers for you to try
-in the `bin` directory.
+It's a smaller version of Ruby on Rails! 
 
-## Suggested Order
+# Why.
 
-0.  `bundle exec rspec spec/p02_controller_spec.rb`
-0.  `bundle exec rspec spec/p03_template_spec.rb`
-0.  `bundle exec rspec spec/p04_session_spec.rb`
-0.  `bundle exec rspec spec/p05_params_spec.rb`
-0.  `bundle exec rspec spec/p06_router_spec.rb`
-0.  `bundle exec rspec spec/p07_integration_spec.rb`
-
-Run `bundle exec rspec` to run all the spec files.
+It's a great learning exercise! 
